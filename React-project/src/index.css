@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.ff-Inter{
+    font-family: 'Inter';
+}
