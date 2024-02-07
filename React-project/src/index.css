@@ -6,3 +6,21 @@
 .ff-Inter{
     font-family: 'Inter';
 }
+
+.line::after{
+    display: block;
+    content: '';
+    background-color: rgb(176, 169, 169);
+    width: 4rem;
+    height: 0.01rem;
+    top: 2rem;
+}
+
+.line::before{
+    display: block;
+    content: '';
+    background-color: rgb(176, 169, 169);
+    width: 4rem;
+    height: 0.01rem;
+    top: 2rem;
+}

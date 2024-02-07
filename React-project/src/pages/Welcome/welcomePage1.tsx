@@ -27,7 +27,7 @@ const welcomePage1 = () => {
                     <div className="flex flex-col items-center"><h1 className="font-semibold text-2xl ff-Inter">Finding the <span className="text-orange-400 ff-Inter"> Perfect </span></h1><h1 className="font-semibold text-2xl ff-Inter"><span className="text-orange-400 ff-Inter"> Online Course </span> for You</h1></div>
                     <div className="flex flex-col items-center justify-center mt-6"><p className="ff-Inter">App to search and discover the most suitable</p><p>place for you to stay.</p></div>
                     <Link to={"/welcome/page2"}><Button Text={"Let’s Get Started"} className="w-80 mt-7 ff-Inter"/></Link>
-                    <h3 className="mt-7 text-base ff-Inter">Already have an account? <Link to="/welcome/page2" style={{ color: '#0961F5', textDecoration: 'underline' }} className="font-medium ff-Inter">Sign In</Link></h3>
+                    <h3 className="mt-7 text-base ff-Inter">Already have an account? <Link to="/auth/login" style={{ color: '#0961F5', textDecoration: 'underline' }} className="font-medium ff-Inter">Sign In</Link></h3>
                     <div className="mt-7 flex items-center">
                         <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="121" y="21" width="134" height="5" rx="2.5" fill="#242424" />

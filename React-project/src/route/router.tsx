@@ -5,6 +5,11 @@ import WelcomePage1 from "../pages/Welcome/welcomePage1";
 import WelcomePage2 from "../pages/Welcome/welcomePage2";
 import WelcomePage3 from "../pages/Welcome/welcomePage3";
 import WelcomePage4 from "../pages/Welcome/welcomePage4";
+import Home from "../pages/Home";
+import Login from "../pages/Authentication/Login";
+import Signup from "../pages/Authentication/Signup";
+import Vertification from "../pages/Authentication/Vertification";
+import NewPassword from "../pages/Authentication/NewPassword";
 
 const router = createBrowserRouter([
         {
@@ -14,6 +19,10 @@ const router = createBrowserRouter([
                 {
                     path: '/',
                     element: <Splash/>
+                },
+                {
+                    path: '/home',
+                    element: <Home/>
                 }
             ]
         },
@@ -37,6 +46,28 @@ const router = createBrowserRouter([
                     path: '/Welcome/page4',
                     element: <WelcomePage4/>
                 }
+            ]
+        },
+        {
+            path: '/auth',
+            element: <Layout/>,
+            children: [
+                {
+                    path: '/auth/login',
+                    element: <Login/>
+                },
+                {
+                    path: '/auth/signup',
+                    element: <Signup/>
+                },
+                {
+                    path: '/auth/vertification',
+                    element: <Vertification/>
+                },
+                {
+                    path: '/auth/changePassword',
+                    element: <NewPassword/>
+                },
             ]
         }
     ])

@@ -31,7 +31,7 @@ const welcomePage4 = () => {
                     <div className="rounded-full w-3 h-3 bg-orange-200"></div>
                     <div className="rounded-full w-4 h-4 bg-orange-400"></div>
                 </div>
-                <Link to={"#"}><button className="rounded-full w-10 h-10 border border-blue-500 bg-blue-500 flex justify-center items-center"><img className="w-9 h-7 " src="/arrow2.png"></img></button></Link>
+                <Link to={"/auth/login"}><button className="rounded-full w-10 h-10 border border-blue-500 bg-blue-500 flex justify-center items-center"><img className="w-9 h-7 " src="/arrow2.png"></img></button></Link>
             </div>
             <div className="mt-14 flex items-center">
                 <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">
