@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Item from "../components/Item/Item";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const Home = () => {
 
@@ -32,8 +33,7 @@ const Home = () => {
                 <h3 className="mt-1 text-lg ff-Inter text-white">Let's start learning!</h3>
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
-                        <input className="w-[84%] h-11 rounded-md px-9 flex justify-start items-center relative ff-Inter" placeholder="search"/>
-                            <img src="/search.png" className="w-6 h-6 absolute top-[28.4%] left-[38.5%]"></img>
+                        <SearchBar className="w-[84%] h-11 bg-white px-9 rounded-md" placeholderText={"Search"} iconTop={"28.4%"} iconLeft={"38.5%"}/>
                         <div className="w-11 h-11 rounded-md bg-white flex items-center justify-center"><img src="/filter.svg" className="w-8 h-8"></img></div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex justify-center items-center pl-6 gap-4">
-                <div className="relative">
+                <Link to={"/courseDetail/about"}><div className="relative">
                     <img src="bg1.png" className=" rounded-xl h-40 ff-Inter"></img>
                     <h1 className="mt-2 font-medium text-[0.97rem]">Design Thinking Fundamental</h1>
                     <div className="flex justify-start items-center gap-2 mt-2">
@@ -82,7 +82,7 @@ const Home = () => {
                         <div className="w-14 h-6 bg-white flex justify-center items-center rounded-md gap-x-0.5"><img src="/star.png" className="w-5 h-5"></img><h3>4.8</h3></div>
                         <div className="w-6 h-6 bg-white flex justify-center items-center rounded-md"><img src="/saved.svg" className="w-5 h-5"></img></div>
                     </div>
-                </div>
+                </div></Link>
                 <div className="relative">
                     <img src="bg2.jpg" className="rounded-bl-xl rounded-tl-xl w-36 h-40 ff-Inter"></img>
                     <h1 className="mt-2 font-medium text-[0.97rem]">3D Illustration Des</h1>
@@ -141,28 +141,35 @@ const Home = () => {
                     </div>
                 </div></Link>
             </div>
-            <div className="shadow-xl mt-3 rounded-tl-2xl rounded-tr-2xl w-full h-20 border-t-2 flex justify-between p-6 items-center">
-                <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1 relative">
-                    <div className="bg-blue-500 rounded-br-full rounded-bl-full w-6 h-3 absolute bottom-[107.5%]"></div>
-                    <img src="/home.png" className="w-7 h-7"></img>
-                    <h1 className="text-xs text-blue-500 font-medium">Home</h1>
-                </div></Link>
-                <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                    <img src="/book.png" className="w-6 h-6"></img>
-                    <h1 className="text-xs text-gray-500">My Course</h1>
-                </div></Link>
-                <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                    <img src="/saved.png" className="w-5 h-5"></img>
-                    <h1 className="text-xs text-gray-500">Bookmark</h1>
-                </div></Link>
-                <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                    <img src="/chat.png" className="w-5 h-6 mb-[-1%]"></img>
-                    <h1 className="text-xs text-gray-500">Chat</h1>
-                </div></Link>
-                <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                    <img src="/user.jpg" className="w-6 h-6"></img>
-                    <h1 className="text-xs text-gray-500">Profile</h1>
-                </div></Link>
+            <div className="mt-3 rounded-tl-2xl rounded-tr-2xl w-full h-28 border-t-2 flex flex-col" style={{ boxShadow: "0px -5px 15px rgba(0, 0, 0, 0.1)" }}>
+                <div className="flex justify-between px-6 pt-4 items-center">
+                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1 relative">
+                        <div className="bg-blue-500 rounded-br-full rounded-bl-full w-6 h-3 absolute bottom-[110%]"></div>
+                        <img src="/home.png" className="w-7 h-7"></img>
+                        <h1 className="text-xs text-blue-500 font-medium">Home</h1>
+                    </div></Link>
+                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
+                        <img src="/book.png" className="w-6 h-6"></img>
+                        <h1 className="text-xs text-gray-500">My Course</h1>
+                    </div></Link>
+                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
+                        <img src="/saved.png" className="w-5 h-5"></img>
+                        <h1 className="text-xs text-gray-500">Bookmark</h1>
+                    </div></Link>
+                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
+                        <img src="/chat.png" className="w-5 h-6 mb-[-1%]"></img>
+                        <h1 className="text-xs text-gray-500">Chat</h1>
+                    </div></Link>
+                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
+                        <img src="/user.jpg" className="w-6 h-6"></img>
+                        <h1 className="text-xs text-gray-500">Profile</h1>
+                    </div></Link>
+                </div>
+                <div className="mt-2 flex items-center">
+                    <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="121" y="21" width="134" height="5" rx="2.5" fill="#242424" />
+                    </svg>
+                </div>
             </div>
         </>
     );

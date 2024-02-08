@@ -27,7 +27,7 @@ const TextField: FC<TextFieldProps> = ({
         <input
            {...restProps}
            type={type}
-           className= '1relative w-80 h-10 px-4 mt-1 bg-slate-100 border border-slate-100 text-xs rounded-lg flex items-center justify-start placeholder:text-gray-500'
+           className= 'focus:ring-blue-500 focus:border-blue-500 w-80 h-10 px-4 mt-1 bg-slate-100 border border-slate-100 text-xs rounded-lg flex items-center justify-start placeholder:text-gray-500'
            id={id}></input>
     
        {helperText && (

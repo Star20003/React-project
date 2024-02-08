@@ -10,6 +10,10 @@ import Login from "../pages/Authentication/Login";
 import Signup from "../pages/Authentication/Signup";
 import Vertification from "../pages/Authentication/Vertification";
 import NewPassword from "../pages/Authentication/NewPassword";
+import About from "../pages/CourseDetails/About";
+import Lessons from "../pages/CourseDetails/Lessons";
+import Reviews from "../pages/CourseDetails/Reviews";
+import CompleteProfile from "../pages/Authentication/CompleteProfile";
 
 const router = createBrowserRouter([
         {
@@ -67,6 +71,28 @@ const router = createBrowserRouter([
                 {
                     path: '/auth/changePassword',
                     element: <NewPassword/>
+                },
+                {
+                    path: '/auth/completeProfile',
+                    element: <CompleteProfile/>
+                },
+            ]
+        },
+        {
+            path: '/courseDetail',
+            element: <Layout/>,
+            children: [
+                {
+                    path: '/courseDetail/about',
+                    element: <About/>
+                },
+                {
+                    path: '/courseDetail/lessons',
+                    element: <Lessons/>
+                },
+                {
+                    path: '/courseDetail/reviews',
+                    element: <Reviews/>
                 },
             ]
         }
