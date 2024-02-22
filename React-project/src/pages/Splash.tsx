@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+
 const Splash = () => {
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            window.location.href = '/welcome/page1';
+        }, 5000);
+
+        return () => clearTimeout(timeout);
+    }, []);
 
     return ( 
             <>

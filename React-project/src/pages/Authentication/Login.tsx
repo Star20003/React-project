@@ -2,8 +2,42 @@ import { FC } from "react";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
 import { Link } from "react-router-dom";
+import * as yup from 'yup';
+import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const loginSchema = yup.object({
+    email: yup.string().email("Invalid email").required("Email is required"),
+    password: yup.string().required("Password is required"),
+}); 
+
+const submitLoginForm: SubmitHandler<{ email: string; password: string; }> = async (data) : Promise<void> => {
+    const res = await fetch('https://reqres.in/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    try {
+        const responseData = await res.json();
+        console.log(responseData);
+    } catch (error) {
+        console.error('Failed to parse JSON response:', error);
+    }
+}
 
 const Login: FC = () => {
+
+    const {
+        register,
+        handleSubmit,
+        formState:{errors}
+        } = useForm ({
+            resolver: yupResolver(loginSchema)
+        })
+
   return (
     <>
         <div className="flex justify-between items-center">
@@ -17,8 +51,8 @@ const Login: FC = () => {
                     <rect opacity="0.35" x="42.832" y="0.833984" width="21" height="10.3333" rx="2.16667" stroke="#242424" />
                     <path opacity="0.4" d="M65.332 4.00098V8.00098C66.1368 7.6622 66.6601 6.87411 66.6601 6.00098C66.6601 5.12784 66.1368 4.33975 65.332 4.00098Z" fill="#242424" />
                     <rect x="44.332" y="2.33398" width="18" height="7.33333" rx="1.33333" fill="#242424" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M29.6671 2.61456C31.8918 2.61465 34.0315 3.46876 35.6438 5.00036C35.7652 5.1186 35.9593 5.11711 36.0789 4.99701L37.2395 3.82668C37.3 3.76577 37.3338 3.68326 37.3333 3.59741C37.3328 3.51156 37.2981 3.42945 37.2368 3.36925C33.0049 -0.682979 26.3286 -0.682979 22.0967 3.36925C22.0354 3.42941 22.0006 3.51149 22 3.59734C21.9994 3.68319 22.0331 3.76573 22.0936 3.82668L23.2546 4.99701C23.3741 5.11729 23.5683 5.11878 23.6897 5.00036C25.3022 3.46866 27.4421 2.61455 29.6671 2.61456ZM29.6671 6.42214C30.8894 6.42206 32.0681 6.87602 32.9742 7.69579C33.0968 7.81214 33.2898 7.80961 33.4093 7.69011L34.5685 6.51978C34.6296 6.45839 34.6635 6.37511 34.6626 6.28858C34.6617 6.20204 34.6261 6.11947 34.5639 6.05934C31.8047 3.49493 27.5318 3.49493 24.7726 6.05934C24.7103 6.11947 24.6747 6.20208 24.6739 6.28865C24.6731 6.37521 24.7071 6.45848 24.7683 6.51978L25.9272 7.69011C26.0467 7.80961 26.2397 7.81214 26.3623 7.69579C27.2677 6.87656 28.4455 6.42265 29.6671 6.42214ZM31.9893 8.98398C31.9911 9.07075 31.9569 9.15442 31.8949 9.21521L29.8896 11.2372C29.8308 11.2966 29.7507 11.3301 29.6671 11.3301C29.5834 11.3301 29.5033 11.2966 29.4445 11.2372L27.4389 9.21521C27.3769 9.15437 27.3428 9.07068 27.3447 8.9839C27.3465 8.89713 27.3841 8.81495 27.4486 8.75678C28.7292 7.67451 30.6049 7.67451 31.8856 8.75678C31.95 8.815 31.9875 8.8972 31.9893 8.98398Z" fill="#242424" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0.666016H15C14.4477 0.666016 14 1.11373 14 1.66602V10.3327C14 10.885 14.4477 11.3327 15 11.3327H16C16.5523 11.3327 17 10.885 17 10.3327V1.66602C17 1.11373 16.5523 0.666016 16 0.666016ZM10.3333 2.99935H11.3333C11.8856 2.99935 12.3333 3.44706 12.3333 3.99935V10.3327C12.3333 10.885 11.8856 11.3327 11.3333 11.3327H10.3333C9.78105 11.3327 9.33333 10.885 9.33333 10.3327V3.99935C9.33333 3.44706 9.78105 2.99935 10.3333 2.99935ZM6.66667 5.33268H5.66667C5.11438 5.33268 4.66667 5.7804 4.66667 6.33268V10.3327C4.66667 10.885 5.11438 11.3327 5.66667 11.3327H6.66667C7.21895 11.3327 7.66667 10.885 7.66667 10.3327V6.33268C7.66667 5.7804 7.21895 5.33268 6.66667 5.33268ZM2 7.33268H1C0.447715 7.33268 0 7.7804 0 8.33268V10.3327C0 10.885 0.447715 11.3327 1 11.3327H2C2.55228 11.3327 3 10.885 3 10.3327V8.33268C3 7.7804 2.55228 7.33268 2 7.33268Z" fill="#242424" />
+                    <path fillRule="evenodd" clipRule="evenodd" d="M29.6671 2.61456C31.8918 2.61465 34.0315 3.46876 35.6438 5.00036C35.7652 5.1186 35.9593 5.11711 36.0789 4.99701L37.2395 3.82668C37.3 3.76577 37.3338 3.68326 37.3333 3.59741C37.3328 3.51156 37.2981 3.42945 37.2368 3.36925C33.0049 -0.682979 26.3286 -0.682979 22.0967 3.36925C22.0354 3.42941 22.0006 3.51149 22 3.59734C21.9994 3.68319 22.0331 3.76573 22.0936 3.82668L23.2546 4.99701C23.3741 5.11729 23.5683 5.11878 23.6897 5.00036C25.3022 3.46866 27.4421 2.61455 29.6671 2.61456ZM29.6671 6.42214C30.8894 6.42206 32.0681 6.87602 32.9742 7.69579C33.0968 7.81214 33.2898 7.80961 33.4093 7.69011L34.5685 6.51978C34.6296 6.45839 34.6635 6.37511 34.6626 6.28858C34.6617 6.20204 34.6261 6.11947 34.5639 6.05934C31.8047 3.49493 27.5318 3.49493 24.7726 6.05934C24.7103 6.11947 24.6747 6.20208 24.6739 6.28865C24.6731 6.37521 24.7071 6.45848 24.7683 6.51978L25.9272 7.69011C26.0467 7.80961 26.2397 7.81214 26.3623 7.69579C27.2677 6.87656 28.4455 6.42265 29.6671 6.42214ZM31.9893 8.98398C31.9911 9.07075 31.9569 9.15442 31.8949 9.21521L29.8896 11.2372C29.8308 11.2966 29.7507 11.3301 29.6671 11.3301C29.5834 11.3301 29.5033 11.2966 29.4445 11.2372L27.4389 9.21521C27.3769 9.15437 27.3428 9.07068 27.3447 8.9839C27.3465 8.89713 27.3841 8.81495 27.4486 8.75678C28.7292 7.67451 30.6049 7.67451 31.8856 8.75678C31.95 8.815 31.9875 8.8972 31.9893 8.98398Z" fill="#242424" />
+                    <path fillRule="evenodd" clipRule="evenodd" d="M16 0.666016H15C14.4477 0.666016 14 1.11373 14 1.66602V10.3327C14 10.885 14.4477 11.3327 15 11.3327H16C16.5523 11.3327 17 10.885 17 10.3327V1.66602C17 1.11373 16.5523 0.666016 16 0.666016ZM10.3333 2.99935H11.3333C11.8856 2.99935 12.3333 3.44706 12.3333 3.99935V10.3327C12.3333 10.885 11.8856 11.3327 11.3333 11.3327H10.3333C9.78105 11.3327 9.33333 10.885 9.33333 10.3327V3.99935C9.33333 3.44706 9.78105 2.99935 10.3333 2.99935ZM6.66667 5.33268H5.66667C5.11438 5.33268 4.66667 5.7804 4.66667 6.33268V10.3327C4.66667 10.885 5.11438 11.3327 5.66667 11.3327H6.66667C7.21895 11.3327 7.66667 10.885 7.66667 10.3327V6.33268C7.66667 5.7804 7.21895 5.33268 6.66667 5.33268ZM2 7.33268H1C0.447715 7.33268 0 7.7804 0 8.33268V10.3327C0 10.885 0.447715 11.3327 1 11.3327H2C2.55228 11.3327 3 10.885 3 10.3327V8.33268C3 7.7804 2.55228 7.33268 2 7.33268Z" fill="#242424" />
                 </svg>
             </div>
         </div>
@@ -26,29 +60,33 @@ const Login: FC = () => {
             <h1 className="text-2xl font-semibold ">Sign In</h1>
             <p className="mt-3 text-xs text-gray-500 ff-Inter">Hi! Welcome back, you`ve been missed</p>
         </div>
-        <form className="flex flex-col justify-center items-start mt-12" action="">
-            <TextField type="text" placeholder="example@gmail.com" label="Email" required/>
+        <form className="flex flex-col justify-center items-start mt-12" action="" onSubmit={handleSubmit(submitLoginForm)}>
+            <TextField 
+                type="text" 
+                placeholder="example@gmail.com" 
+                label="Email" 
+                helperText={<>{errors.email?.message}</>}
+                validation={register('email')}
+                />
             <TextField
                 placeholder="*****************"
                 label="Password"
-                type={"text"}
+                type={"password"}
                 required
-                iconTop="54.5%"
-                iconLeft="59%"
-                icon={
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                    <path d="M8.137 15.147c-.71-.857-1.146-1.947-1.146-3.147 0-2.76 2.241-5 5-5 1.201 0 2.291.435 3.148 1.145l1.897-1.897c-1.441-.738-3.122-1.248-5.035-1.248-6.115 0-10.025 5.355-10.842 6.584.529.834 2.379 3.527 5.113 5.428l1.865-1.865zm6.294-6.294c-.673-.53-1.515-.853-2.44-.853-2.207 0-4 1.792-4 4 0 .923.324 1.765.854 2.439l5.586-5.586zm7.56-6.146l-19.292 19.293-.708-.707 3.548-3.548c-2.298-1.612-4.234-3.885-5.548-6.169 2.418-4.103 6.943-7.576 12.01-7.576 2.065 0 4.021.566 5.782 1.501l3.501-3.501.707.707zm-2.465 3.879l-.734.734c2.236 1.619 3.628 3.604 4.061 4.274-.739 1.303-4.546 7.406-10.852 7.406-1.425 0-2.749-.368-3.951-.938l-.748.748c1.475.742 3.057 1.19 4.699 1.19 5.274 0 9.758-4.006 11.999-8.436-1.087-1.891-2.63-3.637-4.474-4.978zm-3.535 5.414c0-.554-.113-1.082-.317-1.562l.734-.734c.361.69.583 1.464.583 2.296 0 2.759-2.24 5-5 5-.832 0-1.604-.223-2.295-.583l.734-.735c.48.204 1.007.318 1.561.318 2.208 0 4-1.792 4-4z" />
-                    </svg>
-                }
+                iconTop="50%"
+                iconLeft="87%"
+                icon='/eye-off.svg'
+                helperText={<>{errors.password?.message}</>}
+                validation={register('password')}
                 />
             <Link to={'/auth/changePassword'} className="mt-2 mr-2 text-blue-600 underline text-sm font-semibold self-end">Fogot password?</Link>
-            <Link to={"/auth/vertification"} className="flex justify-center items-center"><Button className="mt-10 w-[21rem] h-12" Text={"Sign In"}></Button></Link>
+            <Button className="mt-10 w-[21rem] h-12" onClick={ (e) => { e.preventDefault}} type="submit" Text={"Sign In"}></Button>
         </form>
         <p className="line text-slate-500 text-sm mt-10 flex justify-center items-center gap-2"> or sign up with</p>
         <div className="flex justify-center items-center gap-3 mt-10">  
-            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center" to={"https://www.apple.com/"}><img src="/apple.svg" className="w-5 h-5"></img></Link>
-            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center" to={"https://www.google.com/"}><img src="/google.svg" className="w-5 h-5"></img></Link>
-            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center" to={"https://www.facebook.com/"}><img src="/facebook.svg" className="w-5 h-5"></img></Link>
+            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center transition-all duration-1000 hover:border-blue-700 hover:border hover:shadow-md" to={"https://www.apple.com/"}><img src="/apple.svg" className="w-5 h-5"></img></Link>
+            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center transition-all duration-1000 hover:border-blue-700 hover:border hover:shadow-md" to={"https://www.google.com/"}><img src="/google.svg" className="w-5 h-5"></img></Link>
+            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center transition-all duration-1000 hover:border-blue-700 hover:border hover:shadow-md" to={"https://www.facebook.com/"}><img src="/facebook.svg" className="w-5 h-5"></img></Link>
         </div>
         <div className="flex items-center justify-center mt-8">
           <p className="text-sm">Don`t have an account?</p>

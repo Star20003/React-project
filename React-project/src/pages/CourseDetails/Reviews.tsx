@@ -141,7 +141,7 @@ const Reviews = () => {
                             <h2 className="text-sm text-gray-500 ff-Inter font-medium">Total Price</h2>
                             <h2 className="text-sm text-blue-700 ff-Inter font-semibold">$180.00</h2>
                         </div>
-                        <Button Text={"Enroll Now"} className="w-48"></Button>
+                        <Link to={"/pay/paymentMethod"}><Button Text={"Enroll Now"} className="w-48"></Button></Link>
                     </div>
                     <div className="flex items-center">
                         <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">

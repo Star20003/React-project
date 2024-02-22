@@ -1,8 +1,19 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
 
 const Vertification: FC = () => {
+    
+    const [code, setCode] = useState(generateRandomCode());
+  
+    function generateRandomCode() {
+      return (Math.random() * 10000).toString();
+    }
+  
+    function handleResendCode() {
+      const newCode = generateRandomCode();
+      setCode(newCode);
+    }
   return (
     <>
         <div className="flex justify-between items-center">
@@ -32,14 +43,14 @@ const Vertification: FC = () => {
             <p className="text-xs font-medium text-blue-600">example@email.com</p>
         </div>
         <div className="flex justify-center my-9">
-            <input value="2" className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
-            <input value="8" className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
-            <input value="-" className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
-            <input value="-" className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
+            <input value={code[0]} className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
+            <input value={code[1]} className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
+            <input value={code[2]} className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
+            <input value={code[3]} className="bg-slate-100 w-16 h-12 m-2 rounded-xl hover:outline-slate-300 text-center"></input>
         </div>
         <div className="flex flex-col items-center">
             <p className="text-sm text-slate-500">Didn`t receive OTP?</p>
-            <Link className="text-sm underline font-medium" to={"#"}>Resend code</Link>
+            <Link onClick={handleResendCode} to={"#"} className="text-sm underline font-medium">Resend code</Link>
         </div>
         <Link to={"/home"}><Button Text={"Verify"} className="w-[21rem] h-12 mt-9"></Button></Link>
         <div className="mt-72 flex items-center">

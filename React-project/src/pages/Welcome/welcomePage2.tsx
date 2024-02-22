@@ -19,7 +19,7 @@ const welcomePage2 = () => {
                     </svg>
                 </div>
             </div>
-            <Link to={'/welcome/page3'} className={'text-base font-normal flex items-end justify-end mt-9 mr-[3%]'} style={{ color: '#0961F5'}}>Skip</Link>
+            <Link to={'/auth/login'} className={'text-base font-normal flex items-end justify-end mt-9 mr-[3%]'} style={{ color: '#0961F5'}}>Skip</Link>
             <img src="/welcome1.jpg" className="mt-8"></img>
             <div className="flex flex-col items-center justify-center mt-12">
                 <h1 className="font-semibold text-2xl ff-Inter">Discover Your <span className="text-orange-400 ff-Inter font-semibold text-2xl"> Learning </span></h1><span className="text-orange-400 ff-Inter font-semibold text-2xl"> Adventure </span>

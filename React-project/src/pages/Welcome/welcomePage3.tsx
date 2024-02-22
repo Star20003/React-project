@@ -19,7 +19,7 @@ const welcomePage3 = () => {
                     </svg>
                 </div>
             </div>
-            <Link to={'/welcome/page4'} className={'text-base font-normal flex items-end justify-end mt-9 mr-[3%]'} style={{ color: '#0961F5'}}>Skip</Link>
+            <Link to={'/auth/login'} className={'text-base font-normal flex items-end justify-end mt-9 mr-[3%]'} style={{ color: '#0961F5'}}>Skip</Link>
             <div className={'flex justify-center items-center'}><img src="/welcome3.webp" className="mt-8"></img></div>
             <div className="flex flex-col items-center justify-center mt-12">
                 <h1 className="font-semibold text-2xl ff-Inter"> Stay Organized With</h1><span className="text-orange-400 ff-Inter font-semibold text-2xl"> Bookmarks </span>

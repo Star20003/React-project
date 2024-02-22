@@ -2,9 +2,6 @@ import { FC } from "react";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
 import { Link } from "react-router-dom";
-import PhoneInput from 'react-phone-number-input/input';
-import 'react-phone-number-input/style.css';
-import { E164Number } from "libphonenumber-js/core";
 
 const CompleteProfile: FC = () => {
   return (

@@ -2,8 +2,27 @@ import { FC } from "react";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
 import { Link } from "react-router-dom";
+import * as yup from 'yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const signupSchema = yup.object({
+    name: yup.string(),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    password: yup.string().required("Password is required"),
+    radioButton: yup.string().required("Please select the option")
+});  
 
 const Signup: FC = () => {
+
+    const {
+        register,
+        handleSubmit,
+        formState:{errors}
+        } = useForm ({
+            resolver: yupResolver(signupSchema)
+    })
+
   return (
     <>
         <div className="flex justify-between items-center">
@@ -29,34 +48,48 @@ const Signup: FC = () => {
                 <p className="text-xs text-gray-500 ff-Inter">with your social account</p>
             </div>
         </div>
-        <form className="flex flex-col justify-center items-start mt-12" action="">
-            <TextField type="text" placeholder="John Doe" label="Name" required/>
-            <TextField type="text" placeholder="example@gmail.com" label="Email" required/>
+        <form className="flex flex-col justify-center items-start mt-12" action="" onSubmit={handleSubmit((data) => {console.log(data)})}>
+            <TextField
+                type="text" 
+                placeholder="John Doe" 
+                label="Name" 
+                required
+                helperText={<>{errors.name?.message}</>}
+                validation={register('name')}
+            />
+            <TextField 
+                type="text" 
+                placeholder="example@gmail.com" 
+                label="Email" 
+                required
+                helperText={<>{errors.email?.message}</>}
+                validation={register('email')}
+            />
             <TextField
                 placeholder="*****************"
                 label="Password"
-                type={"text"}
+                type={"password"}
                 required
-                iconTop="65.3%"
-                iconLeft="59%"
-                icon={
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                    <path d="M8.137 15.147c-.71-.857-1.146-1.947-1.146-3.147 0-2.76 2.241-5 5-5 1.201 0 2.291.435 3.148 1.145l1.897-1.897c-1.441-.738-3.122-1.248-5.035-1.248-6.115 0-10.025 5.355-10.842 6.584.529.834 2.379 3.527 5.113 5.428l1.865-1.865zm6.294-6.294c-.673-.53-1.515-.853-2.44-.853-2.207 0-4 1.792-4 4 0 .923.324 1.765.854 2.439l5.586-5.586zm7.56-6.146l-19.292 19.293-.708-.707 3.548-3.548c-2.298-1.612-4.234-3.885-5.548-6.169 2.418-4.103 6.943-7.576 12.01-7.576 2.065 0 4.021.566 5.782 1.501l3.501-3.501.707.707zm-2.465 3.879l-.734.734c2.236 1.619 3.628 3.604 4.061 4.274-.739 1.303-4.546 7.406-10.852 7.406-1.425 0-2.749-.368-3.951-.938l-.748.748c1.475.742 3.057 1.19 4.699 1.19 5.274 0 9.758-4.006 11.999-8.436-1.087-1.891-2.63-3.637-4.474-4.978zm-3.535 5.414c0-.554-.113-1.082-.317-1.562l.734-.734c.361.69.583 1.464.583 2.296 0 2.759-2.24 5-5 5-.832 0-1.604-.223-2.295-.583l.734-.735c.48.204 1.007.318 1.561.318 2.208 0 4-1.792 4-4z" />
-                    </svg>
-                }
-                />
+                iconTop="50%"
+                iconLeft="87%"
+                icon='/eye-off.svg'
+                helperText={<>{errors.password?.message}</>}
+                validation={register('password')}
+            />
             <div className="flex items-center mt-3 ml-4">
-                <input id="link-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 required"/>
+                <input id="link-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 required" {...register('radioButton')}/>
                 <p className="ms-2 text-sm font-medium text-black ff-Inter"> Agree with</p>
                 <Link className="text-blue-600 dark:text-blue-600 font-bold text-sm underline underline-offset-1 ml-1 ff-Inter" to={"#"}>Terms & Condition</Link>
             </div>
-            <Link to={"/auth/login"}><Button className="mt-10 w-[21rem] h-12" Text={"Sign Up"}></Button></Link>
+            <p className="text-red-500 text-xs mt-1"> {errors.radioButton?.message} </p>
+
+            <Button className="mt-10 w-[21rem] h-12" Text={"Sign Up"}></Button>
         </form>
         <p className="line text-slate-500 text-sm mt-10 flex justify-center items-center gap-2"> or sign up with</p>
         <div className="flex justify-center items-center gap-3 mt-10">  
-            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center" to={"https://www.apple.com/"}><img src="/apple.svg" className="w-5 h-5"></img></Link>
-            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center" to={"https://www.google.com/"}><img src="/google.svg" className="w-5 h-5"></img></Link>
-            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center" to={"https://www.facebook.com/"}><img src="/facebook.svg" className="w-5 h-5"></img></Link>
+            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center transition-all duration-1000 hover:border-blue-700 hover:border hover:shadow-md" to={"https://www.apple.com/"}><img src="/apple.svg" className="w-5 h-5"></img></Link>
+            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center transition-all duration-1000 hover:border-blue-700 hover:border hover:shadow-md" to={"https://www.google.com/"}><img src="/google.svg" className="w-5 h-5"></img></Link>
+            <Link className="border border-gray-200 rounded-full w-[3.6rem] h-[3.6rem] flex items-center justify-center transition-all duration-1000 hover:border-blue-700 hover:border hover:shadow-md" to={"https://www.facebook.com/"}><img src="/facebook.svg" className="w-5 h-5"></img></Link>
         </div>
         <div className="flex items-center justify-center mt-8">
           <p className="text-sm">Already have an account?</p>

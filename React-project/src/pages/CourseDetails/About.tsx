@@ -77,7 +77,7 @@ const About = () => {
                 <div className="absolute bg-blue-700 rounded-tl-xl rounded-tr-xl w-24 h-[0.25rem] top-[22.6%] left-[6%]"></div>
                 <div className="py-4 px-5">
                     <h2 className="ff-Inter font-medium text-gray-900 text-sm mt-2">About Course</h2>
-                    <span className="leading-none text-gray-500 ff-Inter mt-4 text-sm">Lorem ipsum, dolor sit amet adipisicing elit. Nobis laboriosam possimus quasi eligendi laborum tenetur dolore manga ailiqua </span><span className="text-sm text-blue-600 underline">Read More</span>
+                    <span className="leading-none text-gray-500 ff-Inter mt-4 text-sm">Lorem ipsum, dolor sit amet adipisicing elit. Nobis laboriosam possimus quasi eligendi laborum tenetur dolore manga ailiqua </span><Link className="text-sm text-blue-600 underline" to={""}>Read More</Link>
                     <h1 className="mt-6 ff-Inter text-sm font-medium">Tutor</h1>
                     <div className="mt-3 flex justify-start items-center">
                         <img src="/person1.jpg" className="rounded-full w-12 h-12"></img>
@@ -132,7 +132,7 @@ const About = () => {
                             <h2 className="text-sm text-gray-500 ff-Inter font-medium">Total Price</h2>
                             <h2 className="text-sm text-blue-700 ff-Inter font-semibold">$180.00</h2>
                         </div>
-                        <Button Text={"Enroll Now"} className="w-48"></Button>
+                        <Link to={"/pay/paymentMethod"}><Button Text={"Enroll Now"} className="w-48"></Button></Link>
                     </div>
                     <div className="flex items-center">
                         <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">

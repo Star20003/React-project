@@ -89,7 +89,7 @@ const About = () => {
                                     <h1 className="text-sm ff-Inter font-bold">Introduction to Design Thinking</h1>
                                     <h1 className="text-gray-500 text-xs ff-Inter font-medium">10:00</h1>
                                 </div>
-                                <img src="/play-blue.png" className="w-6 h-6 ml-7"></img>
+                                <Link to={'#'}><img src="/play-blue.png" className="w-6 h-6 ml-7"></img></Link>
                             </div>
                             <div className="w-[21rem] h-12 border-2 rounded-3xl border-gray-300 bg-white flex justify-start items-center p-1">
                                 <div className="bg-blue-600 bg-opacity-15 rounded-full w-[2.4rem] h-[2.4rem] flex justify-center items-center font-semibold"><h1 className="text-blue-800">02</h1></div>
@@ -138,7 +138,7 @@ const About = () => {
                             <h2 className="text-sm text-gray-500 ff-Inter font-medium">Total Price</h2>
                             <h2 className="text-sm text-blue-700 ff-Inter font-semibold">$180.00</h2>
                         </div>
-                        <Button Text={"Enroll Now"} className="w-48"></Button>
+                        <Link to={"/pay/paymentMethod"}><Button Text={"Enroll Now"} className="w-48"></Button></Link>
                     </div>
                     <div className="flex items-center">
                         <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">
