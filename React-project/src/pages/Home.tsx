@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Item from "../components/Item/Item";
 import SearchBar from "../components/SearchBar/SearchBar";
+import Course from "../components/Course/Course";
+import Menu from "../components/Menu/Menu";
 
 const Home = () => {
 
@@ -124,53 +126,9 @@ const Home = () => {
                     <span className="text-xl font-semibold ff-Inter">Continue Learning</span>
                     <Link className="text-md text-orange-400 ff-Inter" to={"#"}>See all</Link>
                 </div>
-                <Link to={"#"}><div className="w-full h-36 border-2 mt-5 rounded-2xl flex justify-start p-2 items-center gap-4">
-                    <img src="bg3.jpg" className="w-32 h-32 rounded-lg"></img>
-                    <div className="">
-                        <div className="bg-orange-100 flex justify-center items-center w-16 h-6 rounded-3xl"><h3 className="text-orange-500 text-xs ff-Inter">Design</h3></div> 
-                        <div className="text-md font-semibold ff-Inter mt-2">Introduction of Figma</div>
-                        <div className="flex justify-start items-center gap-2 mt-2">
-                            <img src="/user.jpg" className="w-5 h-5"></img>
-                            <h1 className="text-gray-500 text-sm ff-Inter">Jacob Jones</h1>
-                        </div>
-                        <div className="flex items-center justify-center gap-2">
-                            <div className="w-32 h-2 mt-4 rounded-2xl bg-gray-200 relative"></div>
-                            <div className="w-[5.88rem] h-2 mt-4 rounded-2xl bg-blue-500 absolute left-[49%]"></div>
-                            <h1 className="text-gray-500 text-sm mt-3 ff-Inter">20/25</h1>
-                        </div>
-                    </div>
-                </div></Link>
+                <Link to={"#"}><Course image="/bg3.jpg" type="Design" title="Introduction Of Figma" tutor="Jacob Jones" state="ongoing" className="mt-5" typeWidth={"3.5rem"}/></Link>
             </div>
-            <div className="mt-3 rounded-tl-2xl rounded-tr-2xl w-full h-28 border-t-2 flex flex-col" style={{ boxShadow: "0px -5px 15px rgba(0, 0, 0, 0.1)" }}>
-                <div className="flex justify-between px-6 pt-4 items-center">
-                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1 relative">
-                        <div className="bg-blue-500 rounded-br-full rounded-bl-full w-6 h-3 absolute bottom-[110%]"></div>
-                        <img src="/home.png" className="w-7 h-7"></img>
-                        <h1 className="text-xs text-blue-500 font-medium">Home</h1>
-                    </div></Link>
-                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                        <img src="/book.png" className="w-6 h-6"></img>
-                        <h1 className="text-xs text-gray-500">My Course</h1>
-                    </div></Link>
-                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                        <img src="/saved.png" className="w-5 h-5"></img>
-                        <h1 className="text-xs text-gray-500">Bookmark</h1>
-                    </div></Link>
-                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                        <img src="/chat.png" className="w-5 h-6 mb-[-1%]"></img>
-                        <h1 className="text-xs text-gray-500">Chat</h1>
-                    </div></Link>
-                    <Link to={"#"}><div className="flex flex-col justify-center items-center gap-1">
-                        <img src="/user.jpg" className="w-6 h-6"></img>
-                        <h1 className="text-xs text-gray-500">Profile</h1>
-                    </div></Link>
-                </div>
-                <div className="mt-2 flex items-center">
-                    <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="121" y="21" width="134" height="5" rx="2.5" fill="#242424" />
-                    </svg>
-                </div>
-            </div>
+            <Menu Home={"/home-blue.svg"} MyCourse={"/book-gray.svg"} Bookmark={"/bookmark-gray.svg"} Chat={"/chat-gray.svg"} Profile={"/user-gray.svg"} IconBottom={"83%"} IconLeft={"7.5%"} homeClass={"text-blue-500 font-medium"} myCourseClass={"text-gray-500"} bookmarkClass={"text-gray-500"} chatClass={"text-gray-500"} profileClass={"text-gray-500"} />
         </>
     );
 }

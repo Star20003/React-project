@@ -18,6 +18,11 @@ import PaymentMethod from "../pages/Payment/PaymentMethod";
 import AddCard from "../pages/Payment/AddCard";
 import ReviewSummary from "../pages/Payment/ReviewSummary";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import Course from "../pages/Review/Course";
+import Mentor from "../pages/Review/Mentor";
+import Receipt from "../pages/Payment/Receipt";
+import Ongoing from "../pages/Course/Ongoing";
+import Completed from "../pages/Course/Completed";
 
 const router = createBrowserRouter([
         {
@@ -119,7 +124,39 @@ const router = createBrowserRouter([
                 {
                     path: '/pay/paymentSuccess',
                     element: <PaymentSuccess/>
+                },
+                {
+                    path: '/pay/receipt',
+                    element: <Receipt/>
                 }
+            ]
+        },
+        {
+            path: '/review',
+            element: <Layout/>,
+            children: [
+                {
+                    path: '/review/course',
+                    element: <Course/>
+                },
+                {
+                    path: '/review/mentor',
+                    element: <Mentor/>
+                }
+            ]
+        },
+        {
+            path: '/course',
+            element: <Layout/>,
+            children: [
+                {
+                    path: '/course/ongoing',
+                    element: <Ongoing/>
+                },
+                {
+                    path: '/course/completed',
+                    element: <Completed/>
+                },
             ]
         }
     ])
